@@ -1,20 +1,21 @@
-apiVersion: api/v1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: test-yml-nginx
   labels:
     app: yml-App
-Spec: 
+spec: 
   replicas: 4
   selector: 
     matchLabels:
       app: yml-App
-templates:
-  metadata:   
-    app: yml-App
-Spec:
-  Containers:
-    - name: yml-nginx-cont
-      image: shubhsamaksha/v02:latest
-      ports: 
-      - Containerport: 80          
+  template:
+    metadata:
+      labels:
+        app: yml-App
+    spec:
+      containers:
+        - name: yml-nginx-cont
+          image: shubhsamaksha/jenkins_project:my_tomcat9_image
+          ports: 
+            - containerPort: 80
